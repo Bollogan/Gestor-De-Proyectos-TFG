@@ -1,0 +1,55 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
+
+    <!-- Rol -->
+    <changeSet id="003-rol" author="breogan">
+        <createTable tableName="rol">
+            <column name="id"          type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="proyecto_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nombre"      type="VARCHAR(60)"/>
+            <column name="descripcion" type="VARCHAR(255)"/>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_rol_proyecto"
+            baseTableName="rol" baseColumnNames="proyecto_id"
+            referencedTableName="proyecto" referencedColumnNames="id"/>
+    </changeSet>
+
+    <!-- Miembro de proyecto (PK compuesta) -->
+    <changeSet id="004-miembro_proyecto" author="breogan">
+        <createTable tableName="miembro_proyecto">
+            <column name="usuario_id"  type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="proyecto_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rol_id"      type="BIGINT"/>
+            <column name="fecha_asignacion" type="TIMESTAMP"/>
+        </createTable>
+
+        <!-- clave primaria compuesta -->
+        <addPrimaryKey constraintName="pk_miembro_proyecto"
+                    tableName="miembro_proyecto"
+                    columnNames="usuario_id,proyecto_id"/>
+
+        <!-- FKs -->
+        <addForeignKeyConstraint constraintName="fk_miembro_usuario"
+            baseTableName="miembro_proyecto" baseColumnNames="usuario_id"
+            referencedTableName="usuario" referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint constraintName="fk_miembro_proyecto"
+            baseTableName="miembro_proyecto" baseColumnNames="proyecto_id"
+            referencedTableName="proyecto" referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint constraintName="fk_miembro_rol"
+            baseTableName="miembro_proyecto" baseColumnNames="rol_id"
+            referencedTableName="rol" referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
