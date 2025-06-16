@@ -43,4 +43,11 @@ public class Usuario {
 
     @OneToMany(mappedBy = "creadoPor")
     private List<Proyecto> proyectosCreados = new ArrayList<>();
+
+    public Usuario(Long id, String nombre, String email, Boolean activo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.email = email;
+        this.activo = activo;
+    }
 }

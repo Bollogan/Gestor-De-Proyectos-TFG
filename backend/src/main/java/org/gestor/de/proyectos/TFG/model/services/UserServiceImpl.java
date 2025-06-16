@@ -9,20 +9,20 @@ import org.gestor.de.proyectos.TFG.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService{
 
     @Autowired
-    BCryptPasswordEncoder passwordEncoder;
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    PermissionChecker permissionChecker;
+    private PermissionChecker permissionChecker;
 
     @Override
     public void signUp(Usuario user) throws DuplicateInstanceException {
@@ -37,6 +37,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Usuario login(String username, String password) throws IncorrectLoginException {
 
         Optional<Usuario> user = userRepository.findByUsuario(username);

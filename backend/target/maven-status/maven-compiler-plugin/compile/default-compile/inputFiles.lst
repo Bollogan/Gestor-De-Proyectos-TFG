@@ -16,3 +16,17 @@ C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proye
 C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proyectos\TFG\model\enums\EstadoProyecto.java
 C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proyectos\TFG\model\enums\EstadoTarea.java
 C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proyectos\TFG\model\enums\EstadoVersion.java
+C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proyectos\TFG\model\exceptions\commons\InstanceException.java
+C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proyectos\TFG\model\exceptions\commons\InstanceNotFoundException.java
+C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proyectos\TFG\model\exceptions\DuplicateInstanceException.java
+C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proyectos\TFG\model\exceptions\IncorrectLoginException.java
+C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proyectos\TFG\model\repository\UserRepository.java
+C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proyectos\TFG\model\services\PermissionChecker.java
+C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proyectos\TFG\model\services\PermissionCheckerImpl.java
+C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proyectos\TFG\model\services\UserService.java
+C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proyectos\TFG\model\services\UserServiceImpl.java
+C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proyectos\TFG\rest\common\JwtFilter.java
+C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proyectos\TFG\rest\common\JwtGenerator.java
+C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proyectos\TFG\rest\common\JwtGeneratorImpl.java
+C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proyectos\TFG\rest\common\JwtInfo.java
+C:\Users\chopo\Gestor-De-Proyectos-TFG\backend\src\main\java\org\gestor\de\proyectos\TFG\rest\common\SecurityConfig.java

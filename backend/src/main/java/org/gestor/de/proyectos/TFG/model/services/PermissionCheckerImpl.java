@@ -5,11 +5,15 @@ import org.gestor.de.proyectos.TFG.model.entities.Usuario;
 import org.gestor.de.proyectos.TFG.model.exceptions.commons.InstanceNotFoundException;
 import org.gestor.de.proyectos.TFG.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Service
+@Transactional(readOnly = true)
 public class PermissionCheckerImpl implements PermissionChecker {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public void checkUserExists(Long userId) throws InstanceNotFoundException {
@@ -21,6 +25,7 @@ public class PermissionCheckerImpl implements PermissionChecker {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Usuario checkUser(Long userId) throws InstanceNotFoundException {
 
         Optional<Usuario> user = userRepository.findById(userId);
