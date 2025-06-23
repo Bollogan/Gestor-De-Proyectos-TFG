@@ -4,6 +4,10 @@
 # Log file
 *.log
 
+dist/
+build/
+target/
+
 # VSCode file
 *.vscode
 
