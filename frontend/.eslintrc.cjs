@@ -1,0 +1,10 @@
+module.exports = {
+    extends: [
+        'eslint:recommended',
+        'plugin:react/recommended',
+        'prettier'
+    ],
+    settings: { react: { version: 'detect' } },
+    env: { browser: true, es2021: true },
+    parserOptions: { ecmaFeatures: { jsx: true }, ecmaVersion: 'latest', sourceType: 'module' },
+}

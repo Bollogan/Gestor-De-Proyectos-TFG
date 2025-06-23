@@ -10,7 +10,7 @@ public class UserMapper {
     public UserMapper() {}
 
     public static final UserDTO toUserDTO(Usuario u) {
-        return new UserDTO(u.getId(), u.getNombre(), u.getEmail(), u.getActivo());
+        return new UserDTO(u.getId(), u.getNombre(), u.getEmail(), u.getNombre(), u.getEmail(), u.getActivo());
     }
 
     public static final List<UserDTO> toUserDTOs(List<Usuario> usuarios) {
@@ -20,9 +20,11 @@ public class UserMapper {
     public static final Usuario toUsuario(UserDTO userDTO) {
         return new Usuario(
             userDTO.getId(),
-            userDTO.getNombre(),
+            userDTO.getUsername(),
+            userDTO.getFirstName(),
+            userDTO.getPassword(),
             userDTO.getEmail(),
-            userDTO.getActivo()
+            userDTO.getActive()
         );
     }
 

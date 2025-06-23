@@ -4,10 +4,11 @@
 # Log file
 *.log
 
-**/node_modules/
-**/dist/
-**/build/
-**/target/
+*/node_modules/
+*/dist/
+*/build/
+*/target/
+*/.../
 
 # VSCode file
 *.vscode

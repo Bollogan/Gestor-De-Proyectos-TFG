@@ -56,8 +56,8 @@ public class AuthController {
 
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity<AuthenticatedUserDTO> signUp(@RequestBody @Validated UserDTO userDTO) throws DuplicateInstanceException {
+    @PostMapping("/signUp")
+    public ResponseEntity<AuthenticatedUserDTO> signUp(@RequestBody UserDTO userDTO) throws DuplicateInstanceException {
         
         Usuario user = UserMapper.toUsuario(userDTO);
 
@@ -69,8 +69,8 @@ public class AuthController {
         return ResponseEntity.created(location).body(UserMapper.toAuthenticatedUserDto(generateServiceToken(user), user));
     }
 
-    @PostMapping("/login")
-    public AuthenticatedUserDTO login(@RequestBody @Validated LoginParamsDTO params) throws IncorrectLoginException {
+    @PostMapping("/logIn")
+    public AuthenticatedUserDTO login(@RequestBody LoginParamsDTO params) throws IncorrectLoginException {
 
         Usuario user = userService.login(params.getUserName(), params.getPassword());
 

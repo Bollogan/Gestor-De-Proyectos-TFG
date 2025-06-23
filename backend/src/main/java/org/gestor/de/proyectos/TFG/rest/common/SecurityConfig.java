@@ -1,11 +1,10 @@
 package org.gestor.de.proyectos.TFG.rest.common;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -36,9 +35,11 @@ public class SecurityConfig {
                         .requestMatchers(antMatcher("/*")).permitAll()
                         .requestMatchers(antMatcher("/static/**")).permitAll()
                         .requestMatchers(antMatcher("/assets/**")).permitAll()
-                        .requestMatchers(antMatcher("/users/signUp")).permitAll()
-                        .requestMatchers(antMatcher("/users/login")).permitAll()
-                        .requestMatchers(antMatcher("/users/loginFromServiceToken")).permitAll());
+                        .requestMatchers(antMatcher("/auth/signUp")).permitAll()
+                        .requestMatchers(antMatcher("/auth/logIn")).permitAll()
+                        .requestMatchers(antMatcher("/auth/logInFromServiceToken")).permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/signUp").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/logIn").permitAll());
         return http.build();
     }
 
@@ -57,6 +58,7 @@ public class SecurityConfig {
         config.setAllowCredentials(true);
         config.addAllowedHeader("*");
         config.addAllowedOrigin("http://localhost:5173");
+        config.addAllowedOrigin("http://localhost:8080");
         config.addAllowedMethod("POST");
         config.addAllowedMethod("PUT");
         config.addAllowedMethod("GET");

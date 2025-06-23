@@ -10,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +17,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -44,10 +42,12 @@ public class Usuario {
     @OneToMany(mappedBy = "creadoPor")
     private List<Proyecto> proyectosCreados = new ArrayList<>();
 
-    public Usuario(Long id, String nombre, String email, Boolean activo) {
+    public Usuario(Long id, String usuario, String nombre, String password, String email, Boolean activo) {
         this.id = id;
+        this.usuario = usuario;
         this.nombre = nombre;
         this.email = email;
+        this.passwordHash = password;
         this.activo = activo;
     }
 }
