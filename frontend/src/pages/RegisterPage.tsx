@@ -20,13 +20,81 @@ export function RegisterPage() {
   const [firstName, setFirstName] = useState<string>("")
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
+  const [confirmPassword, setConfirmPassword] = useState<string>("")
+
+  const [usernameError, setUsernameError] = useState<string | null>(null)
+  const [firstNameError, setFirstNameError] = useState<string | null>(null)
+  const [emailError, setEmailError] = useState<string | null>(null)
+  const [passwordError, setPasswordError] = useState<string | null>(null)
+  const [confirmPasswordError, setConfirmPasswordError] = useState<string | null>(null)
+
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading]     = useState(false)
 
+  const validateUsername = (): string | null => {
+    if (username.trim().length < 4) {
+      return "El usuario debe tener al menos 4 caracteres"
+    }
+    return null
+  }
+
+  const validateFirstName = (): string | null => {
+    if (firstName.trim() === "") {
+      return "El nombre no puede estar vacío"
+    }
+    return null
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const validateEmail = (): string | null => {
+    if (!emailRegex.test(email)) {
+      return "Introduce un email con formato válido"
+    }
+    return null
+  }
+
+  const validatePassword = (): string | null => {
+    if (password.length < 8) {
+      return "La contraseña debe tener al menos 8 caracteres"
+    }
+    if (!/[A-Za-z]/.test(password) || !/[0-9]/.test(password)) {
+      return "La contraseña debe contener al menos una letra y un número"
+    }
+    return null
+  }
+
+  const validateConfirmPassword = (): string | null => {
+    if (confirmPassword !== password) {
+      return "Las contraseñas no coinciden"
+    }
+    return null
+  }
+
+  const validateAll = (): boolean => {
+    const uErr = validateUsername()
+    const fErr = validateFirstName()
+    const eErr = validateEmail()
+    const pErr = validatePassword()
+    const cpErr = validateConfirmPassword()
+
+    setUsernameError(uErr)
+    setFirstNameError(fErr)
+    setEmailError(eErr)
+    setPasswordError(pErr)
+    setConfirmPasswordError(cpErr)
+
+    return !(uErr || fErr || eErr || pErr || cpErr)
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError(null);
+
+    if (!validateAll()) {
+      return
+    }
+
     setLoading(true)
-    setError(null)
     try {
       await registerService(null, username, password, firstName, email, true)
       navigate("/login");
@@ -79,8 +147,13 @@ export function RegisterPage() {
                       placeholder="Tu usuario"
                       value={username}
                       onChange={e => setUsername(e.target.value)}
+                      onBlur={() => setUsernameError(validateUsername())}
+                      isInvalid={!!usernameError}
                       required
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {usernameError}
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group controlId="formFirstName" className="mb-3">
@@ -90,8 +163,13 @@ export function RegisterPage() {
                       placeholder="Tu nombre"
                       value={firstName}
                       onChange={e => setFirstName(e.target.value)}
+                      onBlur={() => setFirstNameError(validateFirstName())}
+                      isInvalid={!!firstNameError}
                       required
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {firstNameError}
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group controlId="formEmail" className="mb-3">
@@ -101,8 +179,13 @@ export function RegisterPage() {
                       placeholder="tucorreo@ejemplo.com"
                       value={email}
                       onChange={e => setEmail(e.target.value)}
+                      onBlur={() => setEmailError(validateEmail())}
+                      isInvalid={!!emailError}
                       required
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {emailError}
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group controlId="formPassword" className="mb-3">
@@ -112,8 +195,29 @@ export function RegisterPage() {
                       placeholder="••••••••"
                       value={password}
                       onChange={e => setPassword(e.target.value)}
+                      onBlur={() => setPasswordError(validatePassword())}
+                      isInvalid={!!passwordError}
                       required
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {passwordError}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+
+                  <Form.Group controlId="formConfirmPassword" className="mb-3">
+                    <Form.Label>Confirmar Contraseña</Form.Label>
+                    <Form.Control
+                      type="password"
+                      placeholder="Repite tu contraseña"
+                      value={confirmPassword}
+                      onChange={e => setConfirmPassword(e.target.value)}
+                      onBlur={() => setConfirmPasswordError(validateConfirmPassword())}
+                      isInvalid={!!confirmPasswordError}
+                      required
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {confirmPasswordError}
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Button

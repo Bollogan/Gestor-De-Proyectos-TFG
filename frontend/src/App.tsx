@@ -1,25 +1,49 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-
-import { AuthProvider } from './context/AuthContext';
-import { LoginPage } from './pages/LoginPage';
-import { RegisterPage } from './pages/RegisterPage';
-import { HomePage } from './pages/home/HomePage';
-
-function Dashboard() {
-  return <div className="p-4"><h1 className="text-3xl">Panel Principal</h1></div>;
-}
+import React, { useContext } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { LoginPage } from './pages/LoginPage'
+import { RegisterPage } from './pages/RegisterPage'
+import { HomePage } from './pages/home/HomePage'
+import { AuthContext } from './context/AuthContext'
+import { Spinner } from 'react-bootstrap'
 
 export default function App() {
+  const { user, initializing } = useContext(AuthContext);
+
+  if (initializing) {
+    return (
+    <div className="d-flex h-100 align-items-center justify-content-center">
+      <Spinner animation="border" />
+    </div>
+  )
+  }
+
   return (
-    <AuthProvider>
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/" element={<Navigate to="/login" replace />} />
-        </Routes>
-    </AuthProvider>
-  );
+    <Routes>
+      <Route
+        path="/"
+        element={
+          user 
+            ? <Navigate to="/home" replace /> 
+            : <Navigate to="/login" replace />
+        }
+      />
+
+      <Route
+        path="/login"
+        element={ user ? <Navigate to="/home" replace /> : <LoginPage /> }
+      />
+
+      <Route
+        path="/register"
+        element={ user ? <Navigate to="/home" replace /> : <RegisterPage /> }
+      />
+
+      <Route
+        path="/home"
+        element={ user ? <HomePage /> : <Navigate to="/login" replace /> }
+      />
+
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  )
 }

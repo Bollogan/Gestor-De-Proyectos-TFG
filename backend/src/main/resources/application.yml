@@ -8,6 +8,8 @@ spring:
     console:
       enabled: true
       path: /h2-console
+      settings:
+        web-allow-others: true
   jpa:
     hibernate:
       ddl-auto: update
@@ -32,3 +34,12 @@ management:
     web:
       exposure:
         include: health,metrics,liquibase,mappings
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: alpha
+    tagsSorter: alpha
+    init:
+      withCredentials: true

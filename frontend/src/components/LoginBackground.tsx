@@ -4,7 +4,6 @@ import { loadFull } from 'tsparticles';
 
 export function LoginBackground() {
   const particlesInit = useCallback(async engine => {
-    console.log('TSParticles engine:', engine)
     await loadFull(engine)
   }, [])
   return (

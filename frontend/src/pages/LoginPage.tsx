@@ -29,6 +29,7 @@ export function LoginPage() {
     setError(null);
     try {
       const user = await loginService(username, password);
+      localStorage.setItem('serviceToken', user.serviceToken);
       setUser(user);
       navigate("/home");
     } catch (err: any) {
