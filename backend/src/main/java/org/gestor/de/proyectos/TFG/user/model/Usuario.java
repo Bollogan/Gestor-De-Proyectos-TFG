@@ -43,12 +43,15 @@ public class Usuario {
     @OneToMany(mappedBy = "creadoPor")
     private List<Proyecto> proyectosCreados = new ArrayList<>();
 
-    public Usuario(Long id, String usuario, String nombre, String password, String email, Boolean activo) {
+    private String tema = "default";
+
+    public Usuario(Long id, String usuario, String nombre, String password, String email, Boolean activo, String tema) {
         this.id = id;
         this.usuario = usuario;
         this.nombre = nombre;
         this.email = email;
         this.passwordHash = password;
         this.activo = activo;
+        this.tema = tema;
     }
 }

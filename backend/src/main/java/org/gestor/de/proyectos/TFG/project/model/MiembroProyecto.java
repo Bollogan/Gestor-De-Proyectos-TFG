@@ -1,7 +1,6 @@
 package org.gestor.de.proyectos.TFG.project.model;
 
 import java.time.LocalDateTime;
-import org.gestor.de.proyectos.TFG.common.model.entities.Rol;
 import org.gestor.de.proyectos.TFG.user.model.Usuario;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;

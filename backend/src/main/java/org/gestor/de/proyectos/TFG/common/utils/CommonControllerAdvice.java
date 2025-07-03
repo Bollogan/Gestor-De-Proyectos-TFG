@@ -1,8 +1,8 @@
 package org.gestor.de.proyectos.TFG.common.utils;
 
 import java.util.Locale;
-import org.gestor.de.proyectos.TFG.common.model.exceptions.DuplicateInstanceException;
 import org.gestor.de.proyectos.TFG.common.model.exceptions.commons.InstanceNotFoundException;
+import org.gestor.de.proyectos.TFG.user.errors.DuplicateInstanceException;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

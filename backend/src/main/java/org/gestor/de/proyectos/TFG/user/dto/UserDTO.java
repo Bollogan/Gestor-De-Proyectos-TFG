@@ -19,7 +19,9 @@ public class UserDTO {
 
     private Boolean active;
 
-    public UserDTO(Long id, String userName, String password, String firstName, String email, Boolean active) {
+    private String theme;
+
+    public UserDTO(Long id, String userName, String password, String firstName, String email, Boolean active, String theme) {
 
         this.id = id;
         this.username = userName.trim();
@@ -27,5 +29,6 @@ public class UserDTO {
         this.firstName = firstName.trim();
         this.email = email.trim();
         this.active = active != null ? active : false;
+        this.theme = theme;
     }
 }

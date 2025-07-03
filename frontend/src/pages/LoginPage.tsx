@@ -14,6 +14,8 @@ import { LoginBackground } from "../components/LoginBackground";
 import { AuthContext } from "../context/AuthContext";
 import logo from '../images/logo.png';
 import { loginService } from "../services/auth";
+import { useTheme } from '../context/ThemeContext';
+import '../index.css';
 
 export function LoginPage() {
   const { setUser } = useContext(AuthContext);
@@ -22,6 +24,7 @@ export function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const { setThemeName } = useTheme();
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,8 +32,8 @@ export function LoginPage() {
     setError(null);
     try {
       const user = await loginService(username, password);
-      localStorage.setItem('serviceToken', user.serviceToken);
       setUser(user);
+      setThemeName(user.theme);
       navigate("/home");
     } catch (err: any) {
       setError(err.message);

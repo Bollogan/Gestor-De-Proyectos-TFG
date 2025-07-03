@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext'
 
 
 const rootEl = document.getElementById('root')
@@ -14,8 +15,10 @@ if (!rootEl) {
 
 ReactDOM.createRoot(rootEl).render(
   <BrowserRouter>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </ThemeProvider>
   </BrowserRouter>
 )

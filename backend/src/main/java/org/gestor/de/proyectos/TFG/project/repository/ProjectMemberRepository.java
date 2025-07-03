@@ -1,4 +1,4 @@
-package org.gestor.de.proyectos.TFG.common.repository;
+package org.gestor.de.proyectos.TFG.project.repository;
 
 import java.util.List;
 import java.util.Optional;

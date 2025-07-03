@@ -8,6 +8,7 @@ export interface User {
   email: string
   active: boolean
   avatarUrl?: string
+  theme: string
 }
 
 export interface AuthenticatedUserDTO extends User {
@@ -17,7 +18,7 @@ export interface AuthenticatedUserDTO extends User {
 export async function loginService(
   username: string, 
   password: string
-): Promise<User> {
+): Promise<AuthenticatedUserDTO> {
   const res = await fetch(`${API_BASE}/auth/logIn`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -25,7 +26,8 @@ export async function loginService(
     body: JSON.stringify({ userName: username, password }),
   });
   if (!res.ok) throw new Error('Credenciales inválidas');
-  return res.json() as Promise<User>;
+  const json = await res.json();
+  return json.userDto as User;
 }
 
 export async function loginFromServiceToken(
@@ -69,13 +71,14 @@ export async function registerService(
   if (!res.ok) throw new Error('Registro fallido')
 }
 
-export async function fetchCurrentUser() {
+export async function fetchCurrentUser(): Promise<AuthenticatedUserDTO> {
   const res = await fetch(`${API_BASE}/auth/me`, {
     method: 'GET',
     credentials: 'include',
   });
   if (!res.ok) throw new Error('No autenticado');
-  return res.json();
+  const json = await res.json();
+  return json.userDto as AuthenticatedUserDTO;
 }
 
 export async function logoutService(): Promise<void> {
@@ -85,5 +88,23 @@ export async function logoutService(): Promise<void> {
   });
   if (!res.ok) {
     throw new Error('Error al cerrar sesión');
+  }
+}
+export async function setUserTheme(
+  userId: number,
+  theme: string
+): Promise<void> {
+  const res = await fetch(`${API_BASE}/users/${userId}/theme`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include',
+    body: JSON.stringify({ theme })
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Error guardando tema: ${text || res.statusText}`);
   }
 }

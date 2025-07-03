@@ -1,0 +1,73 @@
+.sidebar {
+  width: 450px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--fg);
+}
+
+.sidebar-header {
+  background-color: var(--background-2);
+  background: rgba(0,0,0,0.1);
+  padding: 0.75rem;
+}
+
+.sidebar-header .form-control::placeholder {
+  color: var(--headers-text-color);
+  opacity: 0.7;
+}
+
+.project-list {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 0.5rem 0.75rem;
+  background-color: aliceblue;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  background: rgba(0,0,0,0.1);
+  background-color: rgb(174, 215, 252);
+}
+
+.project-card {
+  border: none;
+  border-radius: 0.75rem;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, var(--gradient-2), var(--gradient-3));
+  transition: filter 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+.project-card:hover {
+  filter: brightness(0.9);
+  transform: translateY(-2px);
+}
+
+.project-card.active {
+  box-shadow: 0 0 0 3px var(--gradient-1);
+}
+
+.project-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.project-list::-webkit-scrollbar-track {
+  background: var(--gradient-3);
+}
+
+.project-list::-webkit-scrollbar-thumb {
+  background-color: var(--gradient-2-light-20);
+  border-radius: 3px;
+}
+
+.project-list {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gradient-2-light-20) var(--gradient-3);
+}
+
+.no-projects {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.85rem;
+  color: var(--fg);
+}

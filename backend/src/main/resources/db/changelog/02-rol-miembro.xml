@@ -3,26 +3,60 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
 
+    <!-- Permisos -->
+    <changeSet id="003-create-permisos-table" author="tuNombre">
+        <createTable tableName="permisos">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="administrar_proyecto" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gestionar_miembros" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gestionar_tareas" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gestionar_versiones" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gestionar_permisos" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gestionar_roles" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
     <!-- Rol -->
-    <changeSet id="003-rol" author="breogan">
+    <changeSet id="004-rol" author="breogan">
         <createTable tableName="rol">
-            <column name="id"          type="BIGINT" autoIncrement="true">
+            <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
             <column name="proyecto_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="nombre"      type="VARCHAR(60)"/>
+            <column name="nombre" type="VARCHAR(60)"/>
             <column name="descripcion" type="VARCHAR(255)"/>
+            <column name="permisos_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
 
         <addForeignKeyConstraint constraintName="fk_rol_proyecto"
             baseTableName="rol" baseColumnNames="proyecto_id"
             referencedTableName="proyecto" referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint constraintName="fk_rol_permisos"
+            baseTableName="rol" baseColumnNames="permisos_id"
+            referencedTableName="permisos" referencedColumnNames="id"/>
     </changeSet>
 
     <!-- Miembro de proyecto (PK compuesta) -->
-    <changeSet id="004-miembro_proyecto" author="breogan">
+    <changeSet id="005-miembro_proyecto" author="breogan">
         <createTable tableName="miembro_proyecto">
             <column name="usuario_id"  type="BIGINT">
                 <constraints nullable="false"/>
@@ -30,7 +64,7 @@
             <column name="proyecto_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="rol_id"      type="BIGINT"/>
+            <column name="rol_id" type="BIGINT"/>
             <column name="fecha_asignacion" type="TIMESTAMP"/>
         </createTable>
 

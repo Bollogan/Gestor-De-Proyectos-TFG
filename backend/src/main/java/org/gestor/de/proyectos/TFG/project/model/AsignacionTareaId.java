@@ -1,4 +1,4 @@
-package org.gestor.de.proyectos.TFG.common.model.entities;
+package org.gestor.de.proyectos.TFG.project.model;
 
 import java.io.Serializable;
 import lombok.AllArgsConstructor;

@@ -21,6 +21,7 @@
             </column>
             <column name="fecha_registro"   type="TIMESTAMP"/>
             <column name="activo"           type="BOOLEAN" defaultValueBoolean="true"/>
+            <column name="tema"             type="VARCHAR(50)" defaultValue="default"/>
         </createTable>
     </changeSet>
 

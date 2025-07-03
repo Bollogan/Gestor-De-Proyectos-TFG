@@ -11,3 +11,19 @@ html, body, #root {
   background-size: 400% 400%;
   animation: pulseGradient 20s ease infinite;
 }
+
+.home-background {
+  background: linear-gradient(
+    315deg,
+    var(--background-1),
+    var(--background-2)
+  );
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+button {
+  border: none;
+  border-radius: 0.75rem;
+  margin-bottom: 0.75rem;
+}

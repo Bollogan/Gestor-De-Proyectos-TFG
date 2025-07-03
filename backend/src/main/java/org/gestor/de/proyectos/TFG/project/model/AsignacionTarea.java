@@ -1,4 +1,4 @@
-package org.gestor.de.proyectos.TFG.common.model.entities;
+package org.gestor.de.proyectos.TFG.project.model;
 
 import java.time.LocalDateTime;
 import org.gestor.de.proyectos.TFG.task.model.Tarea;

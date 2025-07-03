@@ -1,6 +1,7 @@
-import { useCallback } from 'react'
+import { useCallback } from 'react';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
+import '../index.css';
 
 export function LoginBackground() {
   const particlesInit = useCallback(async engine => {
@@ -12,9 +13,6 @@ export function LoginBackground() {
       init={particlesInit}
       options={{
         fullScreen: { enable: true, zIndex: 0 },
-        background: { 
-            color: { value: 'transparent' }
-        },
         particles: {
           number: { value: 100 },
           color: { value: '#06d6a0' },

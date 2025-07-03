@@ -2,7 +2,6 @@ package org.gestor.de.proyectos.TFG.task.mapper;
 
 import java.util.List;
 import org.gestor.de.proyectos.TFG.project.mapper.ProjectMapper;
-import org.gestor.de.proyectos.TFG.rest.dtos.TaskAssignationMapper;
 import org.gestor.de.proyectos.TFG.rest.dtos.VersionMapper;
 import org.gestor.de.proyectos.TFG.task.dto.TaskDTO;
 import org.gestor.de.proyectos.TFG.task.model.Tarea;

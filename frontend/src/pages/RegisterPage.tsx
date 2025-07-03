@@ -13,6 +13,7 @@ import { LoginBackground } from '../components/LoginBackground'
 import { useNavigate } from "react-router-dom"
 import { registerService } from "../services/auth"
 import logo from '../images/logo.png'
+import '../index.css';
 
 export function RegisterPage() {
   const navigate = useNavigate()

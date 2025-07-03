@@ -4,7 +4,7 @@
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
 
     <!-- Feedback IA -->
-    <changeSet id="008-feedback_ia" author="breogan">
+    <changeSet id="009-feedback_ia" author="breogan">
         <createTable tableName="feedback_ia">
             <column name="id"          type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
@@ -34,7 +34,7 @@
     </changeSet>
 
     <!-- Notificación -->
-    <changeSet id="009-notificacion" author="breogan">
+    <changeSet id="010-notificacion" author="breogan">
         <createTable tableName="notificacion">
             <column name="id"             type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
@@ -65,7 +65,7 @@
     </changeSet>
 
     <!-- Métricas -->
-    <changeSet id="010-metrica_proyecto" author="breogan">
+    <changeSet id="011-metrica_proyecto" author="breogan">
         <createTable tableName="metrica_proyecto">
             <column name="id"             type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
@@ -83,7 +83,7 @@
             referencedTableName="proyecto" referencedColumnNames="id"/>
     </changeSet>
 
-    <changeSet id="011-metrica_chart" author="breogan">
+    <changeSet id="012-metrica_chart" author="breogan">
         <createTable tableName="metrica_chart">
             <column name="id"               type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
@@ -110,7 +110,7 @@
     </changeSet>
 
     <!-- Auditoría -->
-    <changeSet id="012-historial_cambios" author="breogan">
+    <changeSet id="013-historial_cambios" author="breogan">
         <createTable tableName="historial_cambios">
             <column name="id"          type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>

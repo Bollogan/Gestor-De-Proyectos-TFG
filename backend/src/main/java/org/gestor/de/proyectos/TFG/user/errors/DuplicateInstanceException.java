@@ -1,4 +1,4 @@
-package org.gestor.de.proyectos.TFG.common.model.exceptions;
+package org.gestor.de.proyectos.TFG.user.errors;
 
 import org.gestor.de.proyectos.TFG.common.model.exceptions.commons.InstanceException;
 

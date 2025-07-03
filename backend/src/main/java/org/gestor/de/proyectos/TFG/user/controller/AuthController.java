@@ -3,7 +3,6 @@ package org.gestor.de.proyectos.TFG.user.controller;
 import java.net.URI;
 import java.time.Duration;
 import java.util.Locale;
-import org.gestor.de.proyectos.TFG.common.model.exceptions.DuplicateInstanceException;
 import org.gestor.de.proyectos.TFG.common.model.exceptions.commons.InstanceNotFoundException;
 import org.gestor.de.proyectos.TFG.common.utils.ErrorsDTO;
 import org.gestor.de.proyectos.TFG.jwt.model.JwtInfo;
@@ -11,6 +10,7 @@ import org.gestor.de.proyectos.TFG.jwt.service.JwtGenerator;
 import org.gestor.de.proyectos.TFG.user.dto.AuthenticatedUserDTO;
 import org.gestor.de.proyectos.TFG.user.dto.LoginParamsDTO;
 import org.gestor.de.proyectos.TFG.user.dto.UserDTO;
+import org.gestor.de.proyectos.TFG.user.errors.DuplicateInstanceException;
 import org.gestor.de.proyectos.TFG.user.errors.IncorrectLoginException;
 import org.gestor.de.proyectos.TFG.user.mapper.UserMapper;
 import org.gestor.de.proyectos.TFG.user.model.Usuario;
@@ -51,9 +51,9 @@ public class AuthController {
     private MessageSource messageSource;
 
     public AuthController(UserService userService, JwtGenerator jwtGenerator, MessageSource messageSource) {
-        this.messageSource = messageSource;
         this.userService = userService;
         this.jwtGenerator = jwtGenerator;
+        this.messageSource = messageSource;
     }
 
     @ExceptionHandler(IncorrectLoginException.class)
@@ -127,7 +127,7 @@ public class AuthController {
         @ApiResponse(responseCode = "404", description = "Unauthorized, no valid session token provided")
     })
     @GetMapping("/me")
-    public AuthenticatedUserDTO me(@CookieValue(name = "SESSION", required = false) String token) throws InstanceNotFoundException {
+    public ResponseEntity<AuthenticatedUserDTO> me(@CookieValue(name = "SESSION", required = false) String token) throws InstanceNotFoundException {
         if (token == null || token.isBlank()) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "No autenticado");
         }
@@ -138,7 +138,7 @@ public class AuthController {
         }
 
         Usuario user = userService.loginFromId(info.getUserId());
-        return UserMapper.toAuthenticatedUserDto(token, user);
+        return ResponseEntity.ok(UserMapper.toAuthenticatedUserDto(token, user));
     }
 
     @Operation(

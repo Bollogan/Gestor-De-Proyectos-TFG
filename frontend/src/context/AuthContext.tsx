@@ -2,6 +2,7 @@ import React, { createContext, useState, useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import type { User } from '../services/auth';
 import { fetchCurrentUser, AuthenticatedUserDTO, logoutService } from '../services/auth'
+import { useTheme } from './ThemeContext';
 
 interface AuthContextType {
   user: User | null
@@ -21,6 +22,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
   const navigate = useNavigate()
   const [user, setUser] = useState<User | null>(null)
   const [initializing, setInitializing] = useState(true)
+  const { setThemeName } = useTheme();
 
   const logout = useCallback(async () => {
     try {
@@ -34,10 +36,17 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
 
   useEffect(() => {
     fetchCurrentUser()
-      .then(dto => setUser(dto))
-      .catch(() => setUser(null))
-      .finally(() => setInitializing(false))
-  }, [])
+      .then((u: User) => {
+      setUser(u);
+      setThemeName(u.theme ?? 'default');
+      })
+      .catch(() => {
+        setUser(null);
+      })
+      .finally(() => {
+        setInitializing(false);
+      });
+}, []);
 
   return (
     <AuthContext.Provider value={{ user, setUser, logout, initializing }}>
