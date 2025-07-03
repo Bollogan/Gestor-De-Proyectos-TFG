@@ -22,6 +22,7 @@
             <column name="fecha_registro"   type="TIMESTAMP"/>
             <column name="activo"           type="BOOLEAN" defaultValueBoolean="true"/>
             <column name="tema"             type="VARCHAR(50)" defaultValue="default"/>
+            <column name="avatar_url"       type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
 

@@ -1,20 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Dropdown,
   Button,
   Container,
-  Image
-} from 'react-bootstrap';
-import { FaBell, FaPlus } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
-import { useTheme } from '../context/ThemeContext';
-import { themes } from '../styles/themes';
-import { setUserTheme } from '../services/auth';
-import avatarPlaceholder from '../images/defaultAvatar.png'
+  Dropdown,
+  Image,
+  Nav,
+  Navbar,
+  NavDropdown,
+} from "react-bootstrap";
+import { FaBell, FaPlus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { useTheme } from "../context/ThemeContext";
+import avatarPlaceholder from "../images/defaultAvatar.png";
+import { setUserTheme } from "../services/auth/auth";
+import { themes } from "../styles/themes";
 
 export const TopBar: React.FC = () => {
   const { user, logout } = useContext(AuthContext);
@@ -29,7 +29,7 @@ export const TopBar: React.FC = () => {
       try {
         await setUserTheme(user.id, newTheme);
       } catch (err) {
-        console.error('Error guardando tema:', err);
+        console.error("Error guardando tema:", err);
       }
     }
   };
@@ -38,13 +38,12 @@ export const TopBar: React.FC = () => {
     <Navbar expand="md" className="border-bottom px-3">
       <Container fluid>
         <h2>Breo PM</h2>
-        
-        <Nav className="ms-auto d-flex align-items-center gap-3">
 
+        <Nav className="ms-auto d-flex align-items-center gap-3">
           <Button
-            className='primary-btn'
+            className="primary-btn"
             size="sm"
-            onClick={() => navigate('/tasks/new')}
+            onClick={() => navigate("/tasks/new")}
           >
             <FaPlus /> Tarea
           </Button>
@@ -62,7 +61,7 @@ export const TopBar: React.FC = () => {
               Tema: {themeName}
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              {themeNames.map(name => (
+              {themeNames.map((name) => (
                 <Dropdown.Item
                   key={name}
                   active={name === themeName}
@@ -75,7 +74,7 @@ export const TopBar: React.FC = () => {
           </Dropdown>
 
           <Nav.Link
-            onClick={() => navigate('/notifications')}
+            onClick={() => navigate("/notifications")}
             className="position-relative px-2 main-text"
           >
             <FaBell size={20} />
@@ -94,15 +93,12 @@ export const TopBar: React.FC = () => {
             align="end"
             menuVariant="light"
           >
-            <NavDropdown.Item onClick={() => navigate('/profile')}>
+            <NavDropdown.Item onClick={() => navigate("/profile")}>
               Modificar perfil
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item onClick={logout}>
-              Cerrar sesión
-            </NavDropdown.Item>
+            <NavDropdown.Item onClick={logout}>Cerrar sesión</NavDropdown.Item>
           </NavDropdown>
-
         </Nav>
       </Container>
     </Navbar>

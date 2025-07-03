@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
-import { Dropdown } from 'react-bootstrap';
-import { useTheme } from '../../context/ThemeContext';
-import { themes } from '../../styles/themes';
-import { setUserTheme } from '../../services/auth';
-import { AuthContext } from '../../context/AuthContext';
+import React, { useContext } from "react";
+import { Dropdown } from "react-bootstrap";
+import { AuthContext } from "../../context/AuthContext";
+import { useTheme } from "../../context/ThemeContext";
+import { setUserTheme } from "../../services/auth/auth";
+import { themes } from "../../styles/themes";
 
 export const ThemeSwitcher: React.FC = () => {
   const { themeName, setThemeName } = useTheme();

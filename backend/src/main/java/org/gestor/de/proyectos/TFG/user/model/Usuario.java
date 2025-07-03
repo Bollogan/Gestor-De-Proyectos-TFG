@@ -45,6 +45,9 @@ public class Usuario {
 
     private String tema = "default";
 
+    @Column(name = "avatar_url")
+    private String avatarUrl;
+
     public Usuario(Long id, String usuario, String nombre, String password, String email, Boolean activo, String tema) {
         this.id = id;
         this.usuario = usuario;

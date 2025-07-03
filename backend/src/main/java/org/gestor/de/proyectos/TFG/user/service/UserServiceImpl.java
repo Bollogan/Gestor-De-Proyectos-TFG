@@ -1,9 +1,16 @@
 package org.gestor.de.proyectos.TFG.user.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.Optional;
+import java.util.UUID;
 import org.gestor.de.proyectos.TFG.common.model.exceptions.commons.InstanceNotFoundException;
 import org.gestor.de.proyectos.TFG.common.model.services.PermissionChecker;
+import org.gestor.de.proyectos.TFG.user.dto.PasswordChangeDTO;
+import org.gestor.de.proyectos.TFG.user.dto.UserUpdateDTO;
 import org.gestor.de.proyectos.TFG.user.errors.DuplicateInstanceException;
 import org.gestor.de.proyectos.TFG.user.errors.IncorrectLoginException;
 import org.gestor.de.proyectos.TFG.user.model.Usuario;
@@ -16,6 +23,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @Transactional
@@ -95,5 +103,39 @@ public class UserServiceImpl implements UserService{
             u.getPasswordHash(),
             Collections.singletonList(authority)
         );
+    }
+
+    @Override
+    public Usuario updateProfile(Long userId, UserUpdateDTO dto) throws InstanceNotFoundException {
+        Usuario u = userRepository.findById(userId)
+            .orElseThrow(() -> new InstanceNotFoundException("Usuario no hallado: {}", userId));
+        u.setUsuario(dto.getUser());
+        u.setNombre(dto.getName());
+        u.setEmail(dto.getEmail());
+        return userRepository.save(u);
+    }
+
+    @Override
+    public void changePassword(Long userId, PasswordChangeDTO dto) throws InstanceNotFoundException, IncorrectLoginException {
+        Usuario u = userRepository.findById(userId)
+            .orElseThrow(() -> new InstanceNotFoundException("Usuario no hallado: {}", userId));
+        if (!passwordEncoder.matches(dto.getCurrentPassword(), u.getPasswordHash())) {
+            throw new IncorrectLoginException(u.getUsuario(), dto.getCurrentPassword());
+        }
+        u.setPasswordHash(passwordEncoder.encode(dto.getNewPassword()));
+        userRepository.save(u);
+    }
+
+    @Override
+    public String uploadAvatar(Long userId, MultipartFile file) throws IOException, InstanceNotFoundException {
+        Usuario u = userRepository.findById(userId)
+            .orElseThrow(() -> new InstanceNotFoundException("Usuario no hallado: {}", userId));
+        String filename = UUID.randomUUID() + "-" + file.getOriginalFilename();
+        Path target = Paths.get("uploads/avatars/").resolve(filename);
+        Files.createDirectories(target.getParent());
+        file.transferTo(target);
+        u.setAvatarUrl(filename);
+        userRepository.save(u);
+        return filename;
     }
 }

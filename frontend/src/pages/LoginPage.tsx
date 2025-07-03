@@ -12,10 +12,10 @@ import {
 import { useNavigate } from "react-router-dom";
 import { LoginBackground } from "../components/LoginBackground";
 import { AuthContext } from "../context/AuthContext";
-import logo from '../images/logo.png';
-import { loginService } from "../services/auth";
-import { useTheme } from '../context/ThemeContext';
-import '../index.css';
+import { useTheme } from "../context/ThemeContext";
+import logo from "../images/logo.png";
+import "../index.css";
+import { loginService } from "../services/auth/auth";
 
 export function LoginPage() {
   const { setUser } = useContext(AuthContext);
@@ -66,11 +66,7 @@ export function LoginPage() {
             >
               <Card.Body className="pl-4 pr-4 pt-5 pb-4">
                 <div className="text-center mb-4">
-                  <Image
-                    src={logo}
-                    alt="BreoPM"
-                    width={300}
-                  />
+                  <Image src={logo} alt="BreoPM" width={300} />
                 </div>
                 <h3 className="text-center mb-2">Iniciar Sesión</h3>
                 {error && <Alert variant="danger">{error}</Alert>}

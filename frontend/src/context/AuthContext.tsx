@@ -1,14 +1,14 @@
-import React, { createContext, useState, useCallback, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import type { User } from '../services/auth';
-import { fetchCurrentUser, AuthenticatedUserDTO, logoutService } from '../services/auth'
-import { useTheme } from './ThemeContext';
+import React, { createContext, useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import type { User } from "../services/auth/auth";
+import { fetchCurrentUser, logoutService } from "../services/auth/auth";
+import { useTheme } from "./ThemeContext";
 
 interface AuthContextType {
-  user: User | null
-  setUser: (u: User | null) => void
-  logout: () => void
-  initializing: boolean
+  user: User | null;
+  setUser: (u: User | null) => void;
+  logout: () => void;
+  initializing: boolean;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -16,29 +16,31 @@ export const AuthContext = createContext<AuthContextType>({
   setUser: () => {},
   logout: () => {},
   initializing: true,
-})
+});
 
-export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
-  const navigate = useNavigate()
-  const [user, setUser] = useState<User | null>(null)
-  const [initializing, setInitializing] = useState(true)
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState<User | null>(null);
+  const [initializing, setInitializing] = useState(true);
   const { setThemeName } = useTheme();
 
   const logout = useCallback(async () => {
     try {
-      await logoutService();    // borra la cookie en el servidor
+      await logoutService(); // borra la cookie en el servidor
     } catch (err) {
-      console.error('Logout fallido:', err);
+      console.error("Logout fallido:", err);
     }
     setUser(null);
-    navigate('/login');
+    navigate("/login");
   }, [navigate]);
 
   useEffect(() => {
     fetchCurrentUser()
       .then((u: User) => {
-      setUser(u);
-      setThemeName(u.theme ?? 'default');
+        setUser(u);
+        setThemeName(u.theme ?? "default");
       })
       .catch(() => {
         setUser(null);
@@ -46,11 +48,11 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
       .finally(() => {
         setInitializing(false);
       });
-}, []);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, setUser, logout, initializing }}>
       {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};
