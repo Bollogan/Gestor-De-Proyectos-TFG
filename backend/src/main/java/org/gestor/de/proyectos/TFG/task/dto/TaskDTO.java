@@ -5,8 +5,9 @@ import java.util.List;
 import org.gestor.de.proyectos.TFG.common.dto.TaskAssignationDTO;
 import org.gestor.de.proyectos.TFG.common.model.enums.EstadoTarea;
 import org.gestor.de.proyectos.TFG.project.dto.ProjectDTO;
-import org.gestor.de.proyectos.TFG.rest.dtos.VersionDTO;
 import org.gestor.de.proyectos.TFG.user.dto.UserDTO;
+import org.gestor.de.proyectos.TFG.version.dto.VersionDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

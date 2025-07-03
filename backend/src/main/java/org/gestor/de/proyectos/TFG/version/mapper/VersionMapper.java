@@ -1,9 +1,11 @@
-package org.gestor.de.proyectos.TFG.rest.dtos;
+package org.gestor.de.proyectos.TFG.version.mapper;
 
 import java.util.List;
 import org.gestor.de.proyectos.TFG.common.model.entities.Version;
 import org.gestor.de.proyectos.TFG.project.mapper.ProjectMapper;
 import org.gestor.de.proyectos.TFG.task.mapper.TaskMapper;
+import org.gestor.de.proyectos.TFG.version.dto.VersionDTO;
+
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor

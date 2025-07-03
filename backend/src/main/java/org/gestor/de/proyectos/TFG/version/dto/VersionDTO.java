@@ -1,4 +1,4 @@
-package org.gestor.de.proyectos.TFG.rest.dtos;
+package org.gestor.de.proyectos.TFG.version.dto;
 
 import java.time.LocalDate;
 import java.util.List;

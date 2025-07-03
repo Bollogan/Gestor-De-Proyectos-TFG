@@ -4,9 +4,10 @@ import java.util.List;
 import org.gestor.de.proyectos.TFG.project.dto.ProjectDTO;
 import org.gestor.de.proyectos.TFG.project.dto.ProjectOverviewDTO;
 import org.gestor.de.proyectos.TFG.project.model.Proyecto;
-import org.gestor.de.proyectos.TFG.rest.dtos.VersionMapper;
 import org.gestor.de.proyectos.TFG.task.mapper.TaskMapper;
 import org.gestor.de.proyectos.TFG.user.mapper.UserMapper;
+import org.gestor.de.proyectos.TFG.version.mapper.VersionMapper;
+
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor

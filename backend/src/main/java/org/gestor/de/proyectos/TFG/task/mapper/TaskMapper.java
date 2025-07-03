@@ -2,10 +2,11 @@ package org.gestor.de.proyectos.TFG.task.mapper;
 
 import java.util.List;
 import org.gestor.de.proyectos.TFG.project.mapper.ProjectMapper;
-import org.gestor.de.proyectos.TFG.rest.dtos.VersionMapper;
 import org.gestor.de.proyectos.TFG.task.dto.TaskDTO;
 import org.gestor.de.proyectos.TFG.task.model.Tarea;
 import org.gestor.de.proyectos.TFG.user.mapper.UserMapper;
+import org.gestor.de.proyectos.TFG.version.mapper.VersionMapper;
+
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor

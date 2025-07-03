@@ -3,9 +3,10 @@ package org.gestor.de.proyectos.TFG.project.dto;
 import java.time.LocalDate;
 import java.util.List;
 import org.gestor.de.proyectos.TFG.common.model.enums.EstadoProyecto;
-import org.gestor.de.proyectos.TFG.rest.dtos.VersionDTO;
 import org.gestor.de.proyectos.TFG.task.dto.TaskDTO;
 import org.gestor.de.proyectos.TFG.user.dto.UserDTO;
+import org.gestor.de.proyectos.TFG.version.dto.VersionDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
