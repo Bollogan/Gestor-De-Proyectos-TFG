@@ -5,6 +5,7 @@ import { RegisterPage } from './pages/RegisterPage'
 import { HomePage } from './pages/home/HomePage'
 import { AuthContext } from './context/AuthContext'
 import { Spinner } from 'react-bootstrap'
+import { ProfilePage } from './pages/profile/ProfilePage'
 
 export default function App() {
   const { user, initializing } = useContext(AuthContext);
@@ -41,6 +42,11 @@ export default function App() {
       <Route
         path="/home"
         element={ user ? <HomePage /> : <Navigate to="/login" replace /> }
+      />
+
+      <Route 
+        path="/profile"
+        element={ user ? <ProfilePage /> : <Navigate to="/login" replace /> }
       />
 
       <Route path="*" element={<Navigate to="/" replace />} />

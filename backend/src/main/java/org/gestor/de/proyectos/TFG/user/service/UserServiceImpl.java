@@ -109,7 +109,7 @@ public class UserServiceImpl implements UserService{
     public Usuario updateProfile(Long userId, UserUpdateDTO dto) throws InstanceNotFoundException {
         Usuario u = userRepository.findById(userId)
             .orElseThrow(() -> new InstanceNotFoundException("Usuario no hallado: {}", userId));
-        u.setUsuario(dto.getUser());
+        u.setUsuario(dto.getUsername());
         u.setNombre(dto.getName());
         u.setEmail(dto.getEmail());
         return userRepository.save(u);

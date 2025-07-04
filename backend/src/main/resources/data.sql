@@ -13,7 +13,7 @@ INSERT INTO usuario (
   '$2a$10$p32Ehmqve9eE.cgkbdnRJug859qblNxt1Y1/NvrDMM8OWTsc2fePK',
   CURRENT_TIMESTAMP,
   TRUE,
-  'Neon'
+  'default'
 );
 
 -- 2) Proyectos de prueba creados por el usuario “dev” (id = 1)

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Sidebar } from '../../components/Sidebar';
+import { Sidebar } from '../../components/home/Sidebar';
 import { AuthContext } from '../../context/AuthContext';
 import { TopBar } from '../../components/TopBar';
-import { StatsPanel } from '../../components/StatsPanel';
+import { StatsPanel } from '../../components/home/StatsPanel';
 import { fetchStats, HomeStats } from '../../services/home/homeService';
 import { fetchUserProjects } from '../../services/project/projectService';
 import { ProjectOverview } from '../../services/project/projectTypes';

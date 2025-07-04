@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent } from 'react';
 import { Card, Badge, Button, InputGroup, FormControl } from 'react-bootstrap';
 import { motion } from 'framer-motion';
-import { ProjectOverview } from '../services/project/projectTypes';
+import { ProjectOverview } from '../../services/project/projectTypes';
 import './Sidebar.css';
 
 type Props = {
@@ -37,7 +37,7 @@ export function Sidebar({ projects, activeId, onSelect }: Props) {
   return (
     <aside
       className="sidebar border-end d-flex flex-column"
-      style={{ width: 240, height: '100vh' }}
+      style={{ width: 300, height: '100vh' }}
     >
       <div className="sidebar-header px-3 py-2">
         <h2 className="mb-2">Tus Proyectos</h2>

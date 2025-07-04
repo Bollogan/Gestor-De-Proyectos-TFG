@@ -9,7 +9,7 @@ import {
   NavDropdown,
 } from "react-bootstrap";
 import { FaBell, FaPlus } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
 import avatarPlaceholder from "../images/defaultAvatar.png";
@@ -93,7 +93,11 @@ export const TopBar: React.FC = () => {
             align="end"
             menuVariant="light"
           >
-            <NavDropdown.Item onClick={() => navigate("/profile")}>
+            <NavDropdown.Item 
+              as = {NavLink}
+              to = "/profile"
+              className="px-3"
+            >
               Modificar perfil
             </NavDropdown.Item>
             <NavDropdown.Divider />

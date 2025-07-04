@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Row, Col } from 'react-bootstrap'
-import { HomeStats } from '../services/home/homeService'
+import { HomeStats } from '../../services/home/homeService'
 
 type Props = {
   stats: HomeStats

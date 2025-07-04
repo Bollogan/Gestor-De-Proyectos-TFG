@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserUpdateDTO {
 
-    private String user;
+    private String username;
 
     private String name;
 
